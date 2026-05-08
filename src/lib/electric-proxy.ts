@@ -72,6 +72,10 @@ export function prepareElectricUrl(request: Request, tableName: string): string 
 	return url.toString()
 }
 
+export function electricProxy(tableName: string) {
+	return ({ request }: { request: Request }) => proxyElectricRequest(request, tableName)
+}
+
 export async function proxyElectricRequest(
 	request: Request,
 	tableName: string,
