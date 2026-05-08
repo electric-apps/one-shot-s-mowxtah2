@@ -10,33 +10,52 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiTodosRouteImport } from './routes/api/todos'
+import { Route as ApiTodosIdRouteImport } from './routes/api/todos/$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiTodosRoute = ApiTodosRouteImport.update({
+  id: '/api/todos',
+  path: '/api/todos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiTodosIdRoute = ApiTodosIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => ApiTodosRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/api/todos': typeof ApiTodosRouteWithChildren
+  '/api/todos/$id': typeof ApiTodosIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/api/todos': typeof ApiTodosRouteWithChildren
+  '/api/todos/$id': typeof ApiTodosIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/api/todos': typeof ApiTodosRouteWithChildren
+  '/api/todos/$id': typeof ApiTodosIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/api/todos' | '/api/todos/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/api/todos' | '/api/todos/$id'
+  id: '__root__' | '/' | '/api/todos' | '/api/todos/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApiTodosRoute: typeof ApiTodosRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +67,38 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/todos': {
+      id: '/api/todos'
+      path: '/api/todos'
+      fullPath: '/api/todos'
+      preLoaderRoute: typeof ApiTodosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/todos/$id': {
+      id: '/api/todos/$id'
+      path: '/$id'
+      fullPath: '/api/todos/$id'
+      preLoaderRoute: typeof ApiTodosIdRouteImport
+      parentRoute: typeof ApiTodosRoute
+    }
   }
 }
 
+interface ApiTodosRouteChildren {
+  ApiTodosIdRoute: typeof ApiTodosIdRoute
+}
+
+const ApiTodosRouteChildren: ApiTodosRouteChildren = {
+  ApiTodosIdRoute: ApiTodosIdRoute,
+}
+
+const ApiTodosRouteWithChildren = ApiTodosRoute._addFileChildren(
+  ApiTodosRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApiTodosRoute: ApiTodosRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
