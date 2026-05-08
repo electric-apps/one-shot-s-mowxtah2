@@ -1,0 +1,139 @@
+/* one-shot template theme — adapted from electric-sql.com.
+   Light: deep navy ink on warm-stone bg.
+   Dark: cyan accent on near-black bg. */
+
+@font-face {
+  font-family: 'OpenSauceOne';
+  src: url('/fonts/OpenSauceOne-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'OpenSauceOne';
+  src: url('/fonts/OpenSauceOne-LightItalic.woff2') format('woff2');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'OpenSauceOne';
+  src: url('/fonts/OpenSauceOne-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'OpenSauceOne';
+  src: url('/fonts/OpenSauceOne-Italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'OpenSauceOne';
+  src: url('/fonts/OpenSauceOne-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'OpenSauceOne';
+  src: url('/fonts/OpenSauceOne-MediumItalic.woff2') format('woff2');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'OpenSauceOne';
+  src: url('/fonts/OpenSauceOne-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'OpenSauceOne';
+  src: url('/fonts/OpenSauceOne-BoldItalic.woff2') format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'OpenSauceOne';
+  src: url('/fonts/OpenSauceOne-ExtraBold.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'OpenSauceOne';
+  src: url('/fonts/OpenSauceOne-Black.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'SourceCodePro';
+  src: url('/fonts/SourceCodePro-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Brand */
+  --theme-brand-1: #1a1a2e;
+  --theme-brand-2: #4a4a6a;
+  --theme-brand-3: #0f0f1e;
+
+  /* Backgrounds */
+  --theme-bg: #f7f7f5;
+  --theme-bg-alt: #f0efed;
+  --theme-bg-elevated: #ffffff;
+  --theme-divider: #e4e3e0;
+
+  /* Text */
+  --theme-text-1: #1a1a2e;
+  --theme-text-2: #5c5c6e;
+  --theme-text-3: #999999;
+
+  /* Accent */
+  --theme-accent: #56e8ea;
+  --theme-accent-hover: #3cd5d8;
+  --theme-accent-active: #27bfc2;
+  --theme-accent-text: #1a1a1a;
+
+  /* Product */
+  --theme-tanstack-db: #ff8c3b;
+  --theme-pglite: #f6f95c;
+}
+
+.dark {
+  --theme-brand-1: #75fbfd;
+  --theme-brand-2: #b8fdfe;
+  --theme-brand-3: #56e8ea;
+
+  --theme-bg: #111318;
+  --theme-bg-alt: #16181f;
+  --theme-bg-elevated: #22252f;
+  --theme-divider: #2d3038;
+
+  --theme-text-1: rgba(255, 255, 245, 0.92);
+  --theme-text-2: rgba(235, 235, 245, 0.8);
+  --theme-text-3: rgba(235, 235, 245, 0.6);
+
+  --theme-accent: #75fbfd;
+  --theme-accent-hover: #5fe5e7;
+  --theme-accent-active: #4dd0d2;
+  --theme-accent-text: #0a0a14;
+}
+
+body {
+  background: var(--theme-bg);
+  color: var(--theme-text-1);
+  font-family: 'OpenSauceOne', ui-sans-serif, system-ui, sans-serif;
+}
+
+code, pre, kbd {
+  font-family: 'SourceCodePro', ui-monospace, Menlo, Monaco, Consolas, monospace;
+}
